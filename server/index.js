@@ -26,7 +26,9 @@ app.use("/saved/users", getSavedUsers);
 app.use("/user/chat", handleChat);
 
 app.listen(port, () => {
-  console.log(`listening on port ${port}`);
+  console.log("hitted");
+  
+  console.log(`listening ${port}`);
 });
 //https://avatar.iran.liara.run/public/boy?username=mohamedyasar
 //jg3lmPR1WD06w3bn
