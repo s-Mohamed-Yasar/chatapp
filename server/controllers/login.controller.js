@@ -3,6 +3,12 @@ import bcrypt from "bcrypt";
 import { createToken } from "../utilities/autorization.js";
 
 const Login = async (req, res) => {
+  
+  const token = req.cookies.jwt; 
+  console.log("token");
+  
+  console.log(req.cookies.jwt);
+  
   const { email, password } = req.body;
   try {
     if (!email.trim() || !password.trim())
@@ -29,6 +35,8 @@ const Login = async (req, res) => {
     res.json({ message: "Welcome to main page " });
   } catch (error) {
     res.json(error.message);
+    console.log("errorrrrrrr");
+    
   }
 };
 

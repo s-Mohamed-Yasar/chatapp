@@ -13,8 +13,8 @@ function ChatMainPage() {
   const [messages, setMessages] = useState([]);
   
 
-
-
+  const res = axios.get("http://localhost:3000/saved/users");
+  console.log(res.data);
 
   return (
     <div className="contact-chat">

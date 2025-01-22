@@ -1,8 +1,11 @@
 import jwt from "jsonwebtoken";
 
 const verifyToken = (req, res, next) => {
-  const token = req.cookies.jwt;
-  console.log(token)
+
+  console.log(req.cookies.jwt);
+  
+  //const token = req.cookies.jwt;
+  //console.log(token)
   if (!token) return res.sendStatus(401); // Unauthorized
 
   jwt.verify(token, "SECRET_KEY", (err, user) => {
@@ -14,13 +17,17 @@ const verifyToken = (req, res, next) => {
   });
 };
 const createToken = (userId, res) => {
-  const token = jwt.sign({ userId }, "SECRET_KEY", { expiresIn: "1h" });
+    const token = jwt.sign({ userId }, "SECRET_KEY", { expiresIn: "1h" });
+    //console.log(token);
   
-  res.cookie("jwt", token, {
+    res.cookie("jwt", token, {
     maxAge: 1000 * 60 * 60,
     httpOnly: true,
-    secure:ture
+    secure: true
+  
   });
+ 
+  
 };
 
 export { verifyToken, createToken };

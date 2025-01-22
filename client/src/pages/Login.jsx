@@ -21,7 +21,7 @@ function Login() {
     
     event.preventDefault()
     
-      const response = axios.post(
+      const response =  await axios.post(
         "http://localhost:3000/user/login",
         loginInputs
       );

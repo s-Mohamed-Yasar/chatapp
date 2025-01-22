@@ -3,8 +3,9 @@ import User from "../db/user.schema.js";
 import { verifyToken } from "../utilities/autorization.js";
 
 const router = express.Router();
-console.log("hit")
-router.get("/", verifyToken, async (req, res) => {
+
+
+router.get("/",verifyToken,  async (req, res) => {
   
   const loggedUserId = req.user.userId._id;
   try {
