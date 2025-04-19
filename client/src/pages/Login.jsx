@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Input from "../components/Input";
 import axios from "axios"
+import { useNavigate } from "react-router-dom";
 
 
 function Login() {
@@ -8,6 +9,7 @@ function Login() {
     email: "",
     password: "",
   });
+  const navigate = useNavigate()
 
   function handleChange(event) {
     const { name, value } = event.target;
@@ -23,13 +25,13 @@ function Login() {
     
       const response =  await axios.post(
         "http://localhost:3000/user/login",
-        loginInputs
+        loginInputs,{withCredentials: true}
       );
-      console.log(response.data);
-    
-    
-    
-
+    console.log(response.data);
+    if (response.data.success) { 
+      localStorage.setItem("user-id", response.data.userId);
+      navigate("/")
+    }
   }
 
   return (

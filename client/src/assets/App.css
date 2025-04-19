@@ -89,7 +89,7 @@ html, #root {
 .message-div{
   overflow-y: auto;
   height: 422px;
-
+  padding-bottom: 75px;
   background-color: aqua;
   border-radius: 25px;
 }
@@ -181,4 +181,41 @@ h2 {
 #gen {
   margin-top: 20px;
   font-weight: 600;
+}
+
+.con-card {
+  display: flex;
+  /* align-items: center; */
+  padding-left: 10px;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: background 0.2s;
+}
+/* .chat-div{
+  background: #802e2e;
+} */
+.con-img {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  overflow: hidden;
+  flex-shrink: 0;
+  margin-right: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.con-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.con-name h5 {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1; /* Ensures no extra spacing */
 }

@@ -5,9 +5,11 @@ import Conversation from "../db/conversation.schema.js";
 
 const router = express.Router();
 
-router.post("/:id", verifyToken, async (req, res) => {
+router.post("/:id",verifyToken,async (req, res) => {
   const { id: receiverId } = req.params;
+  
   const typedMessage = req.body.message;
+
   const sender = req.user;
 
   try {
@@ -32,7 +34,8 @@ router.post("/:id", verifyToken, async (req, res) => {
       const messagesDoc = await Message.find({
         _id: { $in: conversation.messages },
       });
-
+        //console.log(messagesDoc);
+        
       res.json(messagesDoc).status(200);
     } catch (error) {
       res.json({

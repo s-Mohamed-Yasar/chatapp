@@ -14,28 +14,37 @@ const Register = async (req, res) => {
     !gender.trim()
   )
     return res.json({
+      success: false,
       message: "kindly fill all the fields with valid data",
     });
 
   const validEmail = EmailValidator.validate(email);
   if (!validEmail) {
-    return res.json({ massage: "email you have inserted isn't valid" });
+    return res.json({
+      success: false,
+      massage: "email you have inserted isn't valid",
+    });
   }
 
   const is_new_email = await User.findOne({ email: email.trim() });
   if (is_new_email != null) {
-    return res.json({ message: "This email already registered in database" });
+    return res.json({
+      success: false,
+      message: "This email already registered in database",
+    });
   }
 
   const is_new_userName = await User.findOne({ userName: userName.trim() });
   if (is_new_userName != null) {
     return res.json({
+      success: false,
       message: "This user name already registered in database",
     });
   }
 
   if (password.trim().length <= 6) {
     return res.json({
+      success: false,
       message: "password length should be above six digit",
     });
   }
@@ -58,9 +67,14 @@ const Register = async (req, res) => {
     user.password = undefined;
     createToken(user, res);
 
-    res.status(201).json({ massage: "user have create successfully" });
+    return res.json({
+      status: 201,
+      success: true,
+      message: "user have create successfully",
+      userId: user?._id,
+    });
   } catch (error) {
-    res.json(error.message);
+    res.json({ success: false, message: error.message });
   }
 };
 export default Register;
