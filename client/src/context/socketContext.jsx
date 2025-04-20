@@ -6,7 +6,7 @@ const userId = localStorage.getItem("user-id");
 const SocketContext = createContext();
 export const useSocketContext = () => {
   return useContext(SocketContext);
-}
+};
 
 export const SocketProvider = ({ children }) => {
   const [socket, setSocket] = useState(null);
@@ -20,13 +20,12 @@ export const SocketProvider = ({ children }) => {
       },
       //   transports: ["websocket"],
     });
-      setSocket(newSocket);
+    setSocket(newSocket);
 
-      newSocket.on("onlineUsers", (users) => {
-        console.log("online users", users);
-        setOnlineUsers(users);          
-      }); 
-
+    newSocket.on("onlineUsers", (users) => {
+      console.log("online users", users);
+      setOnlineUsers(users);
+    });
 
     return () => {
       newSocket.disconnect();
@@ -34,7 +33,7 @@ export const SocketProvider = ({ children }) => {
   }, []);
 
   return (
-    <SocketContext.Provider value={{socket, onlineUsers}}>
+    <SocketContext.Provider value={{ socket, onlineUsers }}>
       {children}
     </SocketContext.Provider>
   );

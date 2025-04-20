@@ -2,12 +2,15 @@ import express from "express";
 import { verifyToken } from "../utilities/autorization.js";
 import Message from "../db/message.schema.js";
 import Conversation from "../db/conversation.schema.js";
+import { getRecieverId } from "../web-sockets/web-socket.js";
+import { get } from "mongoose";
+import { io } from "../web-sockets/web-socket.js";
 
 const router = express.Router();
 
-router.post("/:id",verifyToken,async (req, res) => {
+router.post("/:id", verifyToken, async (req, res) => {
   const { id: receiverId } = req.params;
-  
+
   const typedMessage = req.body.message;
 
   const sender = req.user;
@@ -31,11 +34,16 @@ router.post("/:id",verifyToken,async (req, res) => {
       conversation.messages.push(newMessage._id);
       await Promise.all([newMessage.save(), conversation.save()]);
 
+      const receiverSocketId = getRecieverId(receiverId);
+      if (receiverSocketId) {
+        io.to(receiverSocketId).emit("chat message", typedMessage);
+      }
+
       const messagesDoc = await Message.find({
         _id: { $in: conversation.messages },
       });
-        //console.log(messagesDoc);
-        
+      //console.log(messagesDoc);
+
       res.json(messagesDoc).status(200);
     } catch (error) {
       res.json({
@@ -48,5 +56,3 @@ router.post("/:id",verifyToken,async (req, res) => {
   }
 });
 export default router;
-// "senderId": "671f240fcf78e66a3b070766",
-//        "receiverId": "671f2286543daba835bf7322",
