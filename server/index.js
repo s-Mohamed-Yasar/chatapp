@@ -7,10 +7,11 @@ import getUserChat from "./routers/getUserChat.router.js"
 import dotenv from "dotenv";
 import cookieParser from "cookie-parser";
 import cors from "cors";
+import { app, server, io } from "./web-sockets/web-socket.js";
 
 dotenv.config();
 
-const app = express();
+
 const port = 3000;
 connectDb();
 
@@ -31,7 +32,7 @@ app.use("/saved/users", getSavedUsers);
 app.use("/user/chat", handleChat);
 app.use("/get/user/chat",getUserChat)
 
-app.listen(port, () => {
+server.listen(port, () => {
   console.log("hitted");
   
   console.log(`listening on port ${port}`);

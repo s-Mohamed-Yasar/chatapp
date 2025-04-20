@@ -98,7 +98,7 @@ function handleMessage(event){
 
         {users?.length > 0 ? (
        users.map((user) => (
-           <ContactCard clickedUser={handleClick} key={user._id} id={user._id} name={user.name} userName={user.userName} gendeer={user.gender} pic={user.profilePic} />
+           <ContactCard clickedUser={handleClick} key={user._id} id={user._id} name={user.name} userName={user.userName} gender={user.gender} pic={user.profilePic} />
            
        ))
    ) : (

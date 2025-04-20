@@ -8,7 +8,7 @@ const router = express.Router();
 router.get("/",verifyToken,  async (req, res) => {
   
   const loggedUserId = req.user.userId._id;
-  console.log(req.user);
+  // console.log(req.user);
   
   
   try {

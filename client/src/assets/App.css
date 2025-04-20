@@ -219,3 +219,13 @@ h2 {
   font-weight: 500;
   line-height: 1; /* Ensures no extra spacing */
 }
+.online-dot {
+  position: absolute;
+  bottom: 3px;
+  right: 5px;
+  width: 10px;
+  height: 10px;
+  background-color: #21944cfa; /* your custom green */
+  border: 2px solid white; /* optional: adds nice border separation */
+  border-radius: 50%;
+}
