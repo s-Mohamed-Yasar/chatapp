@@ -10,7 +10,7 @@ export const useSocketContext = () => {
 
 export const SocketProvider = ({ children }) => {
   const [socket, setSocket] = useState(null);
-  const [onlineUsers, setOnlineUsers] = useState({});
+  const [onlineUsers, setOnlineUsers] = useState([]);
 
   useEffect(() => {
     const newSocket = io("http://localhost:3000", {
@@ -23,7 +23,6 @@ export const SocketProvider = ({ children }) => {
     setSocket(newSocket);
 
     newSocket.on("onlineUsers", (users) => {
-      console.log("online users", users);
       setOnlineUsers(users);
     });
 

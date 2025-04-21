@@ -17,10 +17,9 @@ function ContactCard(props) {
   const userId = props.id
 
   const {onlineUsers} = useSocketContext();
-  console.log(onlineUsers);
 
   useEffect(() => {
-    if (props.id in onlineUsers) {
+    if (onlineUsers.includes(props.id)) {
       console.log("online", props.id);
       setOnlineUser(true);
     } else {

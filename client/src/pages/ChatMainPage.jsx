@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import ContactCard from "../components/ContactCard";
 import ChatContent from "../components/ChatContent";
-import pic from "../assets/react.svg";
+import pic from "../assets/send-button.svg";
 import { flushSync } from "react-dom";
 import { useNavigate } from "react-router-dom";
 import { useSocketContext } from "../context/socketContext";
@@ -17,14 +17,23 @@ function ChatMainPage() {
   const [allChat, setAllChat] = useState([]);
   const { socket } = useSocketContext();
   const navigate = useNavigate();
-
   const userId = localStorage.getItem("user-id");
-  if (!userId) {
-    navigate("/login");
-    return;
+  const jwtToken = getCookie("jwtToken");
+  // if (!userId) {
+  //   // navigate("/login");
+  //   return;
+  // }
+
+  function checkAuth() {
+    if (!userId || !jwtToken) {
+      navigate("/login");
+      return;
+    }
   }
 
   useEffect(() => {
+    checkAuth();
+
     const fetchData = async () => {
       const res = await axios.get("http://localhost:3000/saved/users", {
         withCredentials: true,
@@ -37,8 +46,15 @@ function ChatMainPage() {
     };
     fetchData();
   }, []);
+    function getCookie(name) {
+      const value = `; ${document.cookie}`;
+      const parts = value.split(`; ${name}=`);
+      if (parts.length === 2) return parts.pop().split(";").shift();
+      return null;
+    }
 
   useEffect(() => {
+    checkAuth();
     const fetch = async () => {
       const res = await axios.get(
         `http://localhost:3000/get/user/chat/${chatUser.id}`,
@@ -96,6 +112,8 @@ function ChatMainPage() {
       { withCredentials: true }
     );
     console.log(res.data);
+    
+    console.log(res.data);
     setMessage("");
     refreshChat();
   }
@@ -123,7 +141,7 @@ function ChatMainPage() {
       {userClicked ? (
         <div
           className="chat-div"
-          style={{ paddingBottom: "100px", backgroundColor: "red" }}
+          style={{ paddingBottom: "100px"}}
         >
           <ContactCard
             name={chatUser.name}
@@ -148,6 +166,7 @@ function ChatMainPage() {
           </div>
           <div className="send-coloum">
             <input
+              className="message-input"
               onChange={handleMessage}
               value={message}
               placeholder="Message..."

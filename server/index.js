@@ -33,7 +33,6 @@ app.use("/user/chat", handleChat);
 app.use("/get/user/chat",getUserChat)
 
 server.listen(port, () => {
-  console.log("hitted");
   
   console.log(`listening on port ${port}`);
 });

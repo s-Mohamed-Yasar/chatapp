@@ -21,18 +21,18 @@ function getRecieverId(recieverId) {
 }
 
 io.on("connection", (socket) => {
-  console.log("a user connected", socket.id);
+  // console.log("a user connected", socket.id);
   const userId = socket.handshake.query.userId;
   onlineUsers[userId] = socket.id;
 
-  console.log(onlineUsers);
-  io.emit("onlineUsers", onlineUsers);
+  // console.log(onlineUsers);
+  io.emit("onlineUsers", Object.keys(onlineUsers));
 
   socket.on("disconnect", () => {
-    console.log("user disconnected", socket.id);
+    // console.log("user disconnected", socket.id);
     delete onlineUsers[userId];
-    console.log(onlineUsers);
-    io.emit("onlineUsers", onlineUsers);
+    // console.log(onlineUsers);
+    io.emit("onlineUsers", Object.keys(onlineUsers));
   });
   // socket.on("chat message", (msg) => {
   //     console.log("message: " + msg);
