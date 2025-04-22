@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from "react";
+import { v4 as uuidv4 } from "uuid";
 import axios from "axios";
 import ContactCard from "../components/ContactCard";
 import ChatContent from "../components/ChatContent";
@@ -46,12 +47,12 @@ function ChatMainPage() {
     };
     fetchData();
   }, []);
-    function getCookie(name) {
-      const value = `; ${document.cookie}`;
-      const parts = value.split(`; ${name}=`);
-      if (parts.length === 2) return parts.pop().split(";").shift();
-      return null;
-    }
+  function getCookie(name) {
+    const value = `; ${document.cookie}`;
+    const parts = value.split(`; ${name}=`);
+    if (parts.length === 2) return parts.pop().split(";").shift();
+    return null;
+  }
 
   useEffect(() => {
     checkAuth();
@@ -73,7 +74,15 @@ function ChatMainPage() {
 
     socket.on("chat message", (msg) => {
       console.log("message received", msg);
-      refreshChat(); // or append message live if you prefer
+      setAllChat((prev) => [
+        ...prev,
+        {
+          _id: uuidv4(),
+          message: msg,
+          receiverId: userId,
+        },
+      ]);
+      // refreshChat(); // or append message live if you prefer
     });
 
     return () => {
@@ -111,9 +120,7 @@ function ChatMainPage() {
       { message: message },
       { withCredentials: true }
     );
-    console.log(res.data);
-    
-    console.log(res.data);
+
     setMessage("");
     refreshChat();
   }
@@ -139,10 +146,7 @@ function ChatMainPage() {
         )}
       </div>
       {userClicked ? (
-        <div
-          className="chat-div"
-          style={{ paddingBottom: "100px"}}
-        >
+        <div className="chat-div" style={{ paddingBottom: "100px" }}>
           <ContactCard
             name={chatUser.name}
             userName={chatUser.userName}
@@ -170,6 +174,11 @@ function ChatMainPage() {
               onChange={handleMessage}
               value={message}
               placeholder="Message..."
+              onKeyDown={(e) => {
+                if (e.key === "Enter") {
+                  sendMessage();
+                }
+              }}
             ></input>
             <div className="send-symbol">
               <img onClick={sendMessage} src={pic} />

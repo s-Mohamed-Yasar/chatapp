@@ -7,15 +7,17 @@ html, #root {
   background-color: rgba(0, 0, 0, 0.889);
   color: white;
 }
-.contact-chat{
+.contact-chat {
   display: flex;
   flex-direction: row;
-  width: 900px;
-  height: 500px;
-  margin: 0 auto;
-
-  margin-top: 10vh;
+  width: 90%;
+  max-width: 900px;
+  height: 60vh;
+  max-height: 500px;
+  margin: 10vh auto 0 auto;
+  box-sizing: border-box;
 }
+
 .contacts-div{
   width: 360px;
   height: 497px;
@@ -113,16 +115,18 @@ html, #root {
   border: 2px solid rgba(223, 225, 224, 0.334);
   border-radius: 25px;
   width: 60%;
+  background:rgba(0, 0, 0);
   /* padding-right: 20px; */
 }
 
 .message-input {
-  border: none;
+  border: 1px solid rgb(0, 0, 0);
   outline: none;
   flex: 1;
   padding: 8px;
   font-size: 14px;
-  background: transparent;
+  background:rgba(0, 0, 0);
+  border-radius: 25px;
   color: white;
 }
 .send-symbol {

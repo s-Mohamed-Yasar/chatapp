@@ -31,6 +31,7 @@ function Login() {
     if (response.data.success) { 
       localStorage.setItem("user-id", response.data.userId);
       navigate("/")
+      window.location.reload()
     }
   }
 
