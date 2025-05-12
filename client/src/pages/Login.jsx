@@ -6,6 +6,8 @@ import { Link } from "react-router-dom";
 
 
 function Login() {
+  console.log(import.meta.env.VITE_API_URL);
+  
   const [loginInputs, setLoginInputs] = useState({
     email: "",
     password: "",
