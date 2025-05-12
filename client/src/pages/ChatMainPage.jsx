@@ -133,7 +133,7 @@ function ChatMainPage() {
         <h3 className="con-title">Contacts </h3>
 
         {users?.length > 0 ? (
-          users.map((user) => (
+          users?.map((user) => (
             <ContactCard
               clickedUser={handleClick}
               key={user._id}
