@@ -36,7 +36,7 @@ app.use("/saved/users", getSavedUsers);
 app.use("/user/chat", handleChat);
 app.use("/get/user/chat", getUserChat)
 
-app.get("*", (req, res) => {
+app.get("/debug", (req, res) => {
   res.sendFile(path.join(__dirname, "client/dist", "index.html"));
 });
 
