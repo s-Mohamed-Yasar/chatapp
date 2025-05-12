@@ -257,3 +257,6 @@ html, #root {
   border: 2px solid white; /* optional: adds nice border separation */
   border-radius: 50%;
 }
+.to-signup{
+    padding-top: 20px;
+}

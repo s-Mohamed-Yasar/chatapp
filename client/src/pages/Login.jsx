@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Input from "../components/Input";
 import axios from "axios"
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 
 function Login() {
@@ -38,7 +39,7 @@ function Login() {
   return (
     <div className="auth-top">
       <div className="login">
-        <form onSubmit={handleSubmit} >
+        <form onSubmit={handleSubmit}>
           <h2>login</h2>
           <div className="auth-input">
             <Input
@@ -55,9 +56,12 @@ function Login() {
             />
           </div>
           <div className="auth-btn">
-            <button type="submit" >sign in</button>
+            <button type="submit">sign in</button>
           </div>
         </form>
+        <div className="to-signup">
+          <Link to="/register">To sign up</Link>
+        </div>
       </div>
     </div>
   );
