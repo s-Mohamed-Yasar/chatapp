@@ -30,6 +30,18 @@ html, #root {
   background-color:  rgba(0, 0, 0, 0.367);
 
 }
+.contacts-div-mobile{
+  width: 50px;
+  height: 497px;
+  overflow-y: auto;
+  background-color: rgba(29, 31, 30, 0.149);
+  border-radius: 20px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  background-color:  rgba(0, 0, 0, 0.367);
+
+}
 .chat-div{
   width: 540px;
   height: 497px;

@@ -129,8 +129,14 @@ function ChatMainPage() {
   }
   return (
     <div className="contact-chat">
-      <div className="contacts-div">
-        <h3 className="con-title">Contacts </h3>
+      <div
+        className={`contacts-div ${
+          window.innerWidth <= 480 && userClicked ? "contacts-div-mobile" : ""
+        }`}
+      >
+        {(window.innerWidth > 480 ) && (
+          <h3 className="con-title">Contacts</h3>
+        )}
 
         {users?.length > 0 ? (
           users?.map((user) => (
