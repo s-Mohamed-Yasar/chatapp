@@ -19,8 +19,9 @@ connectDb();
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
+const rootDir = path.dirname(__dirname);
 
-app.use(express.static(path.join(__dirname, "client/dist")));
+app.use(express.static(path.join(rootDir, "client/dist")));
 
 app.use(cors({
   origin: true,
@@ -37,12 +38,15 @@ app.use("/user/chat", handleChat);
 app.use("/get/user/chat", getUserChat)
 
 app.get("/debug", (req, res) => {
-  res.sendFile(path.join(__dirname, "client/dist", "index.html"));
+  res.sendFile(path.join(rootDir, "client/dist", "index.html"));
 });
+
 
 server.listen(port, () => {
   
   console.log(`listening on port ${port}`);
+  console.log(rootDir);
+  
 });
 //https://avatar.iran.liara.run/public/boy?username=mohamedyasar
 //jg3lmPR1WD06w3bn
