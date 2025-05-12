@@ -28,7 +28,10 @@ function Register() {
         event.preventDefault()
 
         try {
-            const response = await axios.post("http://localhost:3000/user/register",registerInputs)
+            const response = await axios.post(
+              `${import.meta.env.VITE_API_URL}/user/register`,
+              registerInputs
+            );
           console.log(response.data)
           if (response.data.success) {
             localStorage.setItem("user-id", response.data.userId);

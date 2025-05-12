@@ -24,9 +24,10 @@ function Login() {
     
     event.preventDefault()
     
-      const response =  await axios.post(
-        "http://localhost:3000/user/login",
-        loginInputs,{withCredentials: true}
+      const response = await axios.post(
+        `${import.meta.env.VITE_API_URL}/user/login`,
+        loginInputs,
+        { withCredentials: true }
       );
     console.log(response.data);
     if (response.data.success) { 

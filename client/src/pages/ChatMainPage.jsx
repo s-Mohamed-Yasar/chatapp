@@ -36,9 +36,12 @@ function ChatMainPage() {
     checkAuth();
 
     const fetchData = async () => {
-      const res = await axios.get("http://localhost:3000/saved/users", {
-        withCredentials: true,
-      });
+      const res = await axios.get(
+        `${import.meta.env.VITE_API_URL}/saved/users`,
+        {
+          withCredentials: true,
+        }
+      );
       //console.log(res.data);
 
       flushSync(() => {
@@ -58,7 +61,7 @@ function ChatMainPage() {
     checkAuth();
     const fetch = async () => {
       const res = await axios.get(
-        `http://localhost:3000/get/user/chat/${chatUser.id}`,
+        `${import.meta.env.VITE_API_URL}/get/user/chat/${chatUser.id}`,
         { withCredentials: true }
       );
       setAllChat(res.data);
@@ -92,7 +95,7 @@ function ChatMainPage() {
 
   async function refreshChat() {
     const res = await axios.get(
-      `http://localhost:3000/get/user/chat/${chatUser.id}`,
+      `${import.meta.env.VITE_API_URL}/get/user/chat/${chatUser.id}`,
       { withCredentials: true }
     );
     console.log(res.data);
@@ -116,7 +119,7 @@ function ChatMainPage() {
     if (message === "") return;
 
     const res = await axios.post(
-      `http://localhost:3000/user/chat/${chatUser.id}`,
+      `${import.meta.env.VITE_API_URL}/user/chat/${chatUser.id}`,
       { message: message },
       { withCredentials: true }
     );
