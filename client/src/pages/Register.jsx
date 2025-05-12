@@ -25,11 +25,12 @@ function Register() {
   }
 
     async function handleSubmit(event){
-        event.preventDefault()
+      event.preventDefault()
+      const BASE_URL = import.meta.env.VITE_API_URL;
 
         try {
             const response = await axios.post(
-              `${import.meta.env.VITE_API_URL}/user/register`,
+              `${BASE_URL}/user/register`,
               registerInputs
             );
           // console.log(response.data)

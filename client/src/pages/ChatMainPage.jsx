@@ -24,7 +24,7 @@ function ChatMainPage() {
   //   // navigate("/login");
   //   return;
   // }
-
+  const BASE_URL = import.meta.env.VITE_API_URL;
   function checkAuth() {
     if (!userId || !jwtToken) {
       navigate("/login");
@@ -37,7 +37,7 @@ function ChatMainPage() {
 
     const fetchData = async () => {
       const res = await axios.get(
-        `${import.meta.env.VITE_API_URL}/saved/users`,
+        `${BASE_URL}/saved/users`,
         {
           withCredentials: true,
         }
@@ -61,7 +61,7 @@ function ChatMainPage() {
     checkAuth();
     const fetch = async () => {
       const res = await axios.get(
-        `${import.meta.env.VITE_API_URL}/get/user/chat/${chatUser.id}`,
+        `${BASE_URL}/get/user/chat/${chatUser.id}`,
         { withCredentials: true }
       );
       setAllChat(res.data);
@@ -95,7 +95,7 @@ function ChatMainPage() {
 
   async function refreshChat() {
     const res = await axios.get(
-      `${import.meta.env.VITE_API_URL}/get/user/chat/${chatUser.id}`,
+      `${BASE_URL}/get/user/chat/${chatUser.id}`,
       { withCredentials: true }
     );
     // console.log(res.data);
@@ -119,7 +119,7 @@ function ChatMainPage() {
     if (message === "") return;
 
     const res = await axios.post(
-      `${import.meta.env.VITE_API_URL}/user/chat/${chatUser.id}`,
+      `${BAS}/user/chat/${chatUser.id}`,
       { message: message },
       { withCredentials: true }
     );

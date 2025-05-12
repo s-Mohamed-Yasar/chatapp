@@ -6,7 +6,6 @@ import { Link } from "react-router-dom";
 
 
 function Login() {
-  console.log(import.meta.env.VITE_API_URL);
   
   const [loginInputs, setLoginInputs] = useState({
     email: "",
@@ -25,13 +24,14 @@ function Login() {
   async function handleSubmit(event){
     
     event.preventDefault()
+    const BASE_URL = import.meta.env.VITE_API_URL;
     
       const response = await axios.post(
-        `${import.meta.env.VITE_API_URL}/user/login`,
+        `${BASE_URL}/user/login`,
         loginInputs,
         { withCredentials: true }
       );
-    // console.log(response.data);
+    console.log(response.data);
     if (response.data.success) { 
       localStorage.setItem("user-id", response.data.userId);
       navigate("/")
