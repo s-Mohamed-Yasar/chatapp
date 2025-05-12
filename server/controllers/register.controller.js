@@ -1,6 +1,6 @@
 import User from "../db/user.schema.js";
 import * as EmailValidator from "email-validator";
-import bcrypt from "bcrypt";
+import bcrypt from "bcryptjs";
 import { createToken } from "../utilities/autorization.js";
 
 const Register = async (req, res) => {

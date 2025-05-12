@@ -30,9 +30,6 @@ app.use(cors({
 app.use(express.json());
 app.use(cookieParser());
 
-app.get("/", (req, res) => {
-  res.send("hello world");
-});
 
 app.use("/user", userEntry);
 app.use("/saved/users", getSavedUsers);
