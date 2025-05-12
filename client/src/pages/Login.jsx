@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 
 
 function Login() {
-  console.log(import.meta.env.VITE_API_URL);
+  // console.log(import.meta.env.VITE_API_URL);
   
   const [loginInputs, setLoginInputs] = useState({
     email: "",
@@ -31,7 +31,7 @@ function Login() {
         loginInputs,
         { withCredentials: true }
       );
-    console.log(response.data);
+    // console.log(response.data);
     if (response.data.success) { 
       localStorage.setItem("user-id", response.data.userId);
       navigate("/")

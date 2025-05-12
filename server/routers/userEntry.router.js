@@ -16,7 +16,7 @@ router.post("/logout", Logout);
 
 router.get("/main", (req, res) => {
   const token = req.cookies.jwtToken;
-  console.log(token);
+  // console.log(token);
   
   res.json({ content: "this is a main content" });
 });

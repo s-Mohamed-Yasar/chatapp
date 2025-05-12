@@ -76,7 +76,7 @@ function ChatMainPage() {
     if (!socket) return;
 
     socket.on("chat message", (msg) => {
-      console.log("message received", msg);
+      // console.log("message received", msg);
       setAllChat((prev) => [
         ...prev,
         {
@@ -98,7 +98,7 @@ function ChatMainPage() {
       `${import.meta.env.VITE_API_URL}/get/user/chat/${chatUser.id}`,
       { withCredentials: true }
     );
-    console.log(res.data);
+    // console.log(res.data);
     setAllChat(res.data);
   }
 

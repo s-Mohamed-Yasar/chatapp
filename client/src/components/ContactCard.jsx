@@ -20,7 +20,7 @@ function ContactCard(props) {
 
   useEffect(() => {
     if (onlineUsers.includes(props.id)) {
-      console.log("online", props.id);
+      // console.log("online", props.id);
       setOnlineUser(true);
     } else {
       setOnlineUser(false);

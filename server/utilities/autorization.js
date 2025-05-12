@@ -13,14 +13,14 @@ const verifyToken = (req, res, next) => {
       return; // Forbidden
     }
     req.user = user;
-    console.log(req.user);
+    // console.log(req.user);
 
     next();
   });
 };
 const createToken = (userId, res) => {
   const token = jwt.sign({ userId }, "SECRET_KEY", { expiresIn: "1h" });
-  console.log(token);
+  // console.log(token);
 
   res.cookie("jwtToken", token, {
     maxAge: 1000 * 60 * 60,

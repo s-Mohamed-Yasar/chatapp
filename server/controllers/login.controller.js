@@ -29,7 +29,7 @@ const Login = async (req, res) => {
       });
 
     user.password = undefined;
-      console.log(user);
+      // console.log(user);
       
     createToken(user, res);
 

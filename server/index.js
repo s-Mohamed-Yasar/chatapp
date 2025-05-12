@@ -45,7 +45,7 @@ app.get("/debug", (req, res) => {
 server.listen(port, () => {
   
   console.log(`listening on port ${port}`);
-  console.log(rootDir);
+  // console.log(rootDir);
   
 });
 //https://avatar.iran.liara.run/public/boy?username=mohamedyasar

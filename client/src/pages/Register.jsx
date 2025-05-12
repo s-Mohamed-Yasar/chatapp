@@ -32,7 +32,7 @@ function Register() {
               `${import.meta.env.VITE_API_URL}/user/register`,
               registerInputs
             );
-          console.log(response.data)
+          // console.log(response.data)
           if (response.data.success) {
             localStorage.setItem("user-id", response.data.userId);
             navigate("/");
