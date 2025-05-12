@@ -20,6 +20,7 @@ function ChatMainPage() {
   const navigate = useNavigate();
   const userId = localStorage.getItem("user-id");
   const jwtToken = getCookie("jwtToken");
+  const scrollRef = useRef(null);
   // if (!userId) {
   //   // navigate("/login");
   //   return;
@@ -36,12 +37,9 @@ function ChatMainPage() {
     checkAuth();
 
     const fetchData = async () => {
-      const res = await axios.get(
-        `${BASE_URL}/saved/users`,
-        {
-          withCredentials: true,
-        }
-      );
+      const res = await axios.get(`${BASE_URL}/saved/users`, {
+        withCredentials: true,
+      });
       //console.log(res.data);
 
       flushSync(() => {
@@ -60,10 +58,9 @@ function ChatMainPage() {
   useEffect(() => {
     checkAuth();
     const fetch = async () => {
-      const res = await axios.get(
-        `${BASE_URL}/get/user/chat/${chatUser.id}`,
-        { withCredentials: true }
-      );
+      const res = await axios.get(`${BASE_URL}/get/user/chat/${chatUser.id}`, {
+        withCredentials: true,
+      });
       setAllChat(res.data);
       //console.log(allChat);
     };
@@ -94,10 +91,9 @@ function ChatMainPage() {
   }, [socket, chatUser]);
 
   async function refreshChat() {
-    const res = await axios.get(
-      `${BASE_URL}/get/user/chat/${chatUser.id}`,
-      { withCredentials: true }
-    );
+    const res = await axios.get(`${BASE_URL}/get/user/chat/${chatUser.id}`, {
+      withCredentials: true,
+    });
     // console.log(res.data);
     setAllChat(res.data);
   }
@@ -127,16 +123,21 @@ function ChatMainPage() {
     setMessage("");
     refreshChat();
   }
+  useEffect(() => {
+    if (scrollRef.current && window.innerWidth <= 480 && userClicked) {
+      scrollRef.current.scrollLeft = scrollRef.current.scrollWidth;
+    }
+  }, [users, userClicked]);
+
   return (
     <div className="contact-chat">
       <div
+        ref={scrollRef}
         className={`contacts-div ${
           window.innerWidth <= 480 && userClicked ? "contacts-div-mobile" : ""
         }`}
       >
-        {(window.innerWidth > 480 ) && (
-          <h3 className="con-title">Contacts</h3>
-        )}
+        {window.innerWidth > 480 && <h3 className="con-title">Contacts</h3>}
 
         {users?.length > 0 ? (
           users?.map((user) => (
