@@ -8,6 +8,8 @@ import dotenv from "dotenv";
 import cookieParser from "cookie-parser";
 import cors from "cors";
 import { app, server, io } from "./web-sockets/web-socket.js";
+import path from "path";
+import { fileURLToPath } from "url";
 
 dotenv.config();
 
@@ -15,8 +17,13 @@ dotenv.config();
 const port = 3000;
 connectDb();
 
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+app.use(express.static(path.join(__dirname, "client/dist")));
+
 app.use(cors({
-  origin: "http://localhost:5173", // Ensure this matches your frontend's URL
+  origin: true,
   credentials: true,              // Allow sending cookies
 }));
 
@@ -30,7 +37,11 @@ app.get("/", (req, res) => {
 app.use("/user", userEntry);
 app.use("/saved/users", getSavedUsers);
 app.use("/user/chat", handleChat);
-app.use("/get/user/chat",getUserChat)
+app.use("/get/user/chat", getUserChat)
+
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "client/dist", "index.html"));
+});
 
 server.listen(port, () => {
   
