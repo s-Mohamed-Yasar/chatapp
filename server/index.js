@@ -24,7 +24,7 @@ const rootDir = path.dirname(__dirname);
 app.use(express.static(path.join(rootDir, "client/dist")));
 
 app.use(cors({
-  origin: true,
+  origin: 'https://chatapp-pieu.onrender.com',
   credentials: true,              // Allow sending cookies
 }));
 
