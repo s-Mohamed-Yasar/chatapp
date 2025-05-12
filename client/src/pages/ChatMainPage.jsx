@@ -119,7 +119,7 @@ function ChatMainPage() {
     if (message === "") return;
 
     const res = await axios.post(
-      `${BAS}/user/chat/${chatUser.id}`,
+      `${BASE_URL}/user/chat/${chatUser.id}`,
       { message: message },
       { withCredentials: true }
     );
