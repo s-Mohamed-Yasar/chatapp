@@ -152,7 +152,7 @@ function ChatMainPage() {
               key={user._id}
               id={user._id}
               name={user.name}
-              userName={user.userName}
+              userName={window.innerWidth > 480 || !userClicked ? user.userName : undefined}
               gender={user.gender}
               pic={user.profilePic}
             />
