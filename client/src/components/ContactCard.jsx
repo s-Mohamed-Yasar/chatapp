@@ -9,7 +9,7 @@ function ContactCard(props) {
   //console.log(props.pic);
   // console.log(props);
   const [onlineUser, setOnlineUser] = useState(false);
-
+  const [userClicked, setUserCliked] = useState(false);
   const pic = props.pic
   const name = props.name
   const userName = props.userName
@@ -31,6 +31,7 @@ function ContactCard(props) {
   return (
     <div
       onClick={() => {
+        setUserCliked(true)
         props.clickedUser(props);
       }}
       className="con-card"
@@ -45,7 +46,7 @@ function ContactCard(props) {
       </div>
 
       <div className="con-name">
-        {window.innerWidth > 480 && <h5>{userName}</h5>}
+        {window.innerWidth > 480 && userClicked ? <h5>{userName}</h5> : ''}
       </div>
     </div>
   );
