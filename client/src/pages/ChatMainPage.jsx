@@ -124,10 +124,16 @@ function ChatMainPage() {
     refreshChat();
   }
   useEffect(() => {
-    if (scrollRef.current && window.innerWidth <= 480 && userClicked) {
-      scrollRef.current.scrollLeft = scrollRef.current.scrollWidth;
+    if (window.innerWidth <= 480 && userClicked) {
+      // Delay to ensure DOM is rendered
+      requestAnimationFrame(() => {
+        if (scrollRef.current) {
+          scrollRef.current.scrollLeft = 50;
+        }
+      });
     }
-  }, [users, userClicked]);
+  }, [userClicked]);
+  
 
   return (
     <div className="contact-chat">

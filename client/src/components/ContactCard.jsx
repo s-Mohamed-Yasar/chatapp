@@ -41,13 +41,11 @@ function ContactCard(props) {
           alt="profile"
           className="w-12 h-12 rounded-full"
         />
-        {onlineUser && (
-          <span className="online-dot "></span>
-        )}
+        {onlineUser && <span className="online-dot "></span>}
       </div>
 
       <div className="con-name">
-        <h5>{userName}</h5>
+        {window.innerWidth > 480 && <h5>{userName}</h5>}
       </div>
     </div>
   );
